@@ -1,4 +1,4 @@
-# Improved-Descriptor-Learning-for-Correspondence-Problems-
+# Improved-Descriptor-Learning-for-Correspondence-Problems
 Mater thesis at the university of Stuttgart
 
 In this thesis, I learned suitable features for optical flow estimation.
