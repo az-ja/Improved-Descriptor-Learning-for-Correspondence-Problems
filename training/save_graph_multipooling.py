@@ -38,29 +38,6 @@ def max_pool_2x2(x):
 translate_10 = [0, -1]
 translate_01 = [-1,0]
 translate_11 = [-1 ,-1]
-def do_multipooling(conv, num_inputs, height, width, poolCounter):
-    pool1_00 = max_pool_2x2(conv)
-    conv1_01 = tf.contrib.image.translate(conv, translate_01)
-    pool1_01 = max_pool_2x2(conv1_01)
-
-    conv1_10 = tf.contrib.image.translate(conv, translate_10)
-    pool1_10 = max_pool_2x2(conv1_10)
-
-    conv1_11 = tf.contrib.image.translate(conv, translate_11)
-    pool1_11 = max_pool_2x2(conv1_11)
-
-    new_h = height / (2 ** poolCounter)
-    new_h = tf.ceil(tf.to_int32(new_h))
-    new_h = tf.Session().run(new_h)
-
-    new_w = width / (2 ** poolCounter)
-    new_w = tf.ceil(tf.to_int32(new_w))
-    new_w = tf.Session().run(new_w)
-
-    output = tf.stack([pool1_00, pool1_01, pool1_10, pool1_11])
-    output = tf.reshape(output, (4*num_inputs, new_h, new_w, output.shape[4]))
-
-    return output
 
 def do_multipooling_withDims(conv):
     pool_00 = max_pool_2x2(conv)
