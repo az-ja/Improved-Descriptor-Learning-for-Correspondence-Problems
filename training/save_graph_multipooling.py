@@ -62,7 +62,7 @@ def do_multipooling(conv, num_inputs, height, width, poolCounter):
 
     return output
 
-def do_multipooling_withDims(conv,):
+def do_multipooling_withDims(conv):
     pool_00 = max_pool_2x2(conv)
     conv_01 = tf.contrib.image.translate(conv, translate_01)
     pool_01 = max_pool_2x2(conv_01)
@@ -157,7 +157,7 @@ def model_network(filterSize, input_depth, x_image, num_imgs, num_filters, pooli
                     elif poolingOrder[i-1] == 0:
                         hidden_conv.append(conv_relu(hidden_conv[-1], [filterSize, filterSize, num_filters[i - 1], num_filters[i]],[num_filters[i]]))
                     else:
-                        print("Poolingwise: What the hell?")
+                        print("Poolingwise: pooling elements must be either zero or one.")
                     if poolingOrder[i]== 1:
                         pooling_output = do_multipooling_withDims(hidden_conv[i])
                         hidden_pool.append(pooling_output)
